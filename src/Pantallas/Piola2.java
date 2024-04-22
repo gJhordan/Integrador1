@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package trabajointegrador;
+package Pantallas;
 
 /**
  *
@@ -305,7 +305,7 @@ public class Piola2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Piola2().setVisible(true);
-                System.out.println("pene");
+             
             }
         });
     }
