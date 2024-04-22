@@ -305,6 +305,7 @@ public class Piola2 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Piola2().setVisible(true);
+                System.out.println("pene");
             }
         });
     }
