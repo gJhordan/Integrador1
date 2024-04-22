@@ -9,5 +9,5 @@ package Clases;
  * @author Administrador
  */
 public class CompraDeuda {
-    
+    double TEA;
 }
