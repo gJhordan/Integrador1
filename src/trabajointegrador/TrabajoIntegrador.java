@@ -10,7 +10,7 @@ package trabajointegrador;
  */
 public class TrabajoIntegrador {
     public static void main(String[] args) {
-        System.out.println("Hello poto!");
+        System.out.println("Hello!");
         
     }
     
