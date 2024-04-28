@@ -8,6 +8,11 @@ package Clases;
  *
  * @author Administrador
  */
-public class CompraDeuda {
-    double TEA;
+public class ValoresEstaticos {
+    
+
+    public static DatosIngresados DI = new DatosCalculados();
+    public static DatosCalculados DC = new DatosCalculados();
+    public static FechasCalculadas FC = new FechasCalculadas();
+   
 }
