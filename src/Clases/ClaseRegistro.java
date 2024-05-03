@@ -8,7 +8,7 @@ package Clases;
  *
  * @author Administrador
  */
-public class DatosIngresados {
+abstract class ClaseRegistro {
     double TEA, MontoTC, MontoPP,MontoSolicitado, MontoTotal;
     String Tipo_Seguro;
     int Periodo_Gracia, Cuotas;
@@ -76,8 +76,13 @@ public class DatosIngresados {
     public void setCuotas(int Cuotas) {
         this.Cuotas = Cuotas;
     }
-    
-    
+    public void DefinirMontoPP(){
+        this.MontoPP = getMontoPP()+(getMontoPP()*0.02);
+    }
+     public void DefinirMontoTotal(){
+        
+        this.MontoTotal = getMontoPP()+getMontoSolicitado()+getMontoTC();
+    }
     
     
 }

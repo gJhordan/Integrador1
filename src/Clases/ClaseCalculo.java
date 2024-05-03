@@ -8,8 +8,9 @@ package Clases;
  *
  * @author Administrador
  */
-public class DatosCalculados extends DatosIngresados{
-    double MontoCuota, MontoSeguro, PrimaSeguro,MontoInteres, MAFInicial, MontoSaldo, Amortizacion, TCEA;
+public class ClaseCalculo extends ClaseRegistro {
+
+    double MontoCuota, MontoSeguro, PrimaSeguro, MontoInteres, MAFInicial, MontoSaldo, Amortizacion, TCEA;
 
     public double getMontoCuota() {
         return MontoCuota;
@@ -75,4 +76,36 @@ public class DatosCalculados extends DatosIngresados{
         this.MontoSaldo = MontoSaldo;
     }
 
+    public void DefinirPrimaSeguro() {
+        double prima;
+        switch (getTipo_Seguro()) {
+            case "Seguro de Desgravamen":
+                prima = 0.011218;
+                break;
+            case "Seguro de Desgravamen con Devolución":
+                prima = 0.014596;
+                break;
+            case "Seguro de Vida":
+                prima = 0.037000;
+                break;
+            default:
+                prima = 0;
+                System.out.println("ERROR");
+        }
+        this.PrimaSeguro = prima;
+    }
+
+    public void DefinirMontoSeguro() {
+        this.MontoSeguro = getMontoTotal() * getPrimaSeguro();
+    }
+
+    public void DefinirMAFInicial() {
+        this.MAFInicial = getMontoSeguro() + getMontoTotal();
+    }
+    public void DefinirTCEA(){
+        
+    }
+    public void DefinirCuotaMensual(){
+        
+    }
 }

@@ -4,11 +4,12 @@
  */
 package Pantallas;
 
-import Clases.DatosIngresados;
-import Clases.ValoresEstaticos;
+
+import Clases.ClaseCalculo;
+import Clases.ClaseEstatica;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import Pantallas.PanelIngresarDatos;
+
 
 /**
  *
@@ -16,13 +17,13 @@ import Pantallas.PanelIngresarDatos;
  */
 public class PanelCronogramaPago extends javax.swing.JPanel {
 
-    DatosIngresados DIst = ValoresEstaticos.DI;
 
+    ClaseCalculo CCst = ClaseEstatica.CC;
     public PanelCronogramaPago() {
         initComponents();
         //ESTO ES SOLO UNA PRUEBA PARA QUE VEAS QUE FUNCIONA EL VALOR ESTATICO
         //ARRANCA EL PROGRAMA EN LA PANTALLA MENU PRINCIPAL
-        lblPrueba.setText(DIst.getTipo_Seguro());
+        lblPrueba.setText(CCst.getTipo_Seguro());
     }
 
     public void mostrarTipo(JPanel j) {
@@ -192,9 +193,10 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PnlGeneral2Layout = new javax.swing.GroupLayout(PnlGeneral2);

@@ -4,15 +4,17 @@
  */
 package Clases;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class FechasCalculadas extends DatosIngresados {
+public class ClaseFechas extends ClaseRegistro {
 
     LocalDate fechadesembolso;
     LocalDate fecha1erpago;
     LocalDate[] fechasDePago;
 
-   
+    
     public LocalDate getFechadesembolso() {
         return fechadesembolso;
     }
@@ -38,17 +40,23 @@ public class FechasCalculadas extends DatosIngresados {
     }
 
     public LocalDate generarFecha1erPago() {
-        return fecha1erpago.plusDays(Periodo_Gracia);
+        CalcularFechaDesembolso();
+        return fechadesembolso.plusDays(Periodo_Gracia);
     }
 
     public void generarFechasDePago() {
         fechasDePago = new LocalDate[Cuotas];
         for (int i = 0; i < Cuotas; i++) {
+           
             fechasDePago[i] = fecha1erpago.plusMonths(i);
+             if (fechasDePago[i].getDayOfWeek() == DayOfWeek.SUNDAY) {
+                fechasDePago[i] = fechasDePago[i].plusDays(1); 
+            }
+            System.out.println(fechasDePago[i]);
         }
     }
      public void CalcularFechaDesembolso() {
         this.fechadesembolso = LocalDate.now();
     }
-
+  
 }

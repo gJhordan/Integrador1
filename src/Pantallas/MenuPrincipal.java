@@ -43,7 +43,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         PnlGeneral = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(852, 558));
 
         PnlGeneral.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -51,11 +50,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         PnlGeneral.setLayout(PnlGeneralLayout);
         PnlGeneralLayout.setHorizontalGroup(
             PnlGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 852, Short.MAX_VALUE)
+            .addGap(0, 845, Short.MAX_VALUE)
         );
         PnlGeneralLayout.setVerticalGroup(
             PnlGeneralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGap(0, 557, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

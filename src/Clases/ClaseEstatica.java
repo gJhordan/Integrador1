@@ -8,11 +8,9 @@ package Clases;
  *
  * @author Administrador
  */
-public class ValoresEstaticos {
+public class ClaseEstatica {
     
-
-    public static DatosIngresados DI = new DatosCalculados();
-    public static DatosCalculados DC = new DatosCalculados();
-    public static FechasCalculadas FC = new FechasCalculadas();
+    public static ClaseCalculo CC = new ClaseCalculo();
+    public static ClaseFechas CF = new ClaseFechas();
    
 }

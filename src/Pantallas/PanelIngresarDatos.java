@@ -4,13 +4,11 @@
  */
 package Pantallas;
 
-import Clases.DatosCalculados;
-import Clases.DatosIngresados;
-import Clases.FechasCalculadas;
-import Clases.ValoresEstaticos;
+import Clases.ClaseCalculo;
+import Clases.ClaseFechas;
+import Clases.ClaseEstatica;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import Pantallas.PanelCronogramaPago;
 
 /**
  *
@@ -18,9 +16,9 @@ import Pantallas.PanelCronogramaPago;
  */
 public class PanelIngresarDatos extends javax.swing.JPanel {
 
-    DatosCalculados DCst = ValoresEstaticos.DC;
-    DatosIngresados DIst = ValoresEstaticos.DI;
-    FechasCalculadas FCst = ValoresEstaticos.FC;
+    ClaseCalculo CCst = ClaseEstatica.CC;
+
+    ClaseFechas CFst = ClaseEstatica.CF;
 
     public PanelIngresarDatos() {
         initComponents();
@@ -28,14 +26,24 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
     }
 
     public void GuardarDatos() {
-        DIst.setCuotas((int) spn_CantidadCuotas.getValue());
-        DIst.setPeriodo_Gracia((int) spn_PeriodoGracia.getValue());
-        DIst.setTEA(Integer.parseInt(txt_TEA.getText()));
-        DIst.setMontoPP(Integer.parseInt(txtMonto_PP.getText()));
-        DIst.setMontoTC(Integer.parseInt(txtMonto_TC.getText()));
-        DIst.setMontoSolicitado(Integer.parseInt(txt_CashSolicitado.getText()));
-        DIst.setTipo_Seguro((String) cmbbox_TipoSeguro.getSelectedItem());
+        CFst.setCuotas((int) spn_CantidadCuotas.getValue());
+        CFst.setPeriodo_Gracia((int) spn_PeriodoGracia.getValue());
+        CCst.setTEA(Integer.parseInt(txt_TEA.getText()));
+        CCst.setMontoPP(Integer.parseInt(txtMonto_PP.getText()));
+        CCst.setMontoTC(Integer.parseInt(txtMonto_TC.getText()));
+        CCst.setMontoSolicitado(Integer.parseInt(txt_CashSolicitado.getText()));
+        CCst.setTipo_Seguro((String) cmbbox_TipoSeguro.getSelectedItem());
 
+    }
+
+    public void CalcularDatos() {
+        CCst.DefinirMontoPP();
+        CCst.DefinirMontoTotal();
+        CCst.DefinirPrimaSeguro();
+        CCst.DefinirMontoSeguro();
+        CCst.DefinirMAFInicial();
+        CFst.setFecha1erpago(CFst.generarFecha1erPago());
+        CFst.generarFechasDePago();
     }
 
     public void mostrarTipo(JPanel j) {
@@ -149,7 +157,7 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
@@ -198,8 +206,9 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addGap(61, 61, 61)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,32 +244,27 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(txt_CashSolicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbbox_TipoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMonto_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
+                        .addGap(61, 61, 61)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_TEA, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cmbbox_TipoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMonto_PP, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_TEA, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -281,8 +285,9 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_CashSolicitado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout PnlGeneral1Layout = new javax.swing.GroupLayout(PnlGeneral1);
@@ -310,8 +315,9 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
 
     private void btn_OfertaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_OfertaInicialActionPerformed
         GuardarDatos();
-//       PanelCronogramaPago pCPag = new PanelCronogramaPago();
-//        mostrarTipo(pCPag);
+        CalcularDatos();
+        PanelOfertaInicial pCOI = new PanelOfertaInicial();
+        mostrarTipo(pCOI);
 
     }//GEN-LAST:event_btn_OfertaInicialActionPerformed
 
