@@ -105,8 +105,9 @@ public void mostrarTipo(JPanel j) {
 
         PnlGeneral3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(241, 181, 90));
+        jPanel1.setBackground(new java.awt.Color(153, 221, 255));
 
+        tblOfertaInicial.setForeground(new java.awt.Color(255, 255, 255));
         tblOfertaInicial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -121,55 +122,44 @@ public void mostrarTipo(JPanel j) {
         jScrollPane1.setViewportView(tblOfertaInicial);
 
         jLabel1.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Importe del prestamo:");
 
         jLabel2.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tipo de seguro:");
 
         jLabel3.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Prima de seguro:");
 
         jLabel4.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Monto del seguro:");
 
         jLabel5.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("MAF Inicial:");
 
         jLabel6.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Moneda:");
 
         jLabel7.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Cuotas:");
 
         jLabel8.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Fecha de desembolso:");
 
         jLabel9.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Fecha de 1er pago:");
 
         jLabel10.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Cuota mensual:");
 
         jLabel11.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("TCEA:");
 
+        txtTCEA.setForeground(new java.awt.Color(255, 255, 255));
+
         jLabel12.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("TEA:");
 
-        jLabel13.setFont(new java.awt.Font("Kristen ITC", 2, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel13.setText("Vision previa de la oferta para el cliente:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -224,12 +214,10 @@ public void mostrarTipo(JPanel j) {
                     .addComponent(txtTipoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPrimaSeguro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(47, 47, 47))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,14 +277,14 @@ public void mostrarTipo(JPanel j) {
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 153, 0));
+        jPanel3.setBackground(new java.awt.Color(5, 130, 202));
 
-        btnOfertaInicial.setBackground(new java.awt.Color(0, 51, 204));
-        btnOfertaInicial.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
-        btnOfertaInicial.setForeground(new java.awt.Color(255, 255, 255));
+        btnOfertaInicial.setBackground(new java.awt.Color(0, 166, 251));
+        btnOfertaInicial.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        btnOfertaInicial.setForeground(new java.awt.Color(0, 53, 84));
         btnOfertaInicial.setText("Ir a cronograma de pagos");
         btnOfertaInicial.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(0, 0, 0)));
         btnOfertaInicial.setBorderPainted(false);
@@ -309,9 +297,9 @@ public void mostrarTipo(JPanel j) {
             }
         });
 
-        btnExportarExcel.setBackground(new java.awt.Color(0, 51, 204));
-        btnExportarExcel.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
-        btnExportarExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportarExcel.setBackground(new java.awt.Color(0, 166, 251));
+        btnExportarExcel.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        btnExportarExcel.setForeground(new java.awt.Color(0, 53, 84));
         btnExportarExcel.setText("Exportar a EXCEL");
         btnExportarExcel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(0, 0, 0)));
         btnExportarExcel.setBorderPainted(false);
@@ -325,9 +313,9 @@ public void mostrarTipo(JPanel j) {
             }
         });
 
-        btnDatosNuevos.setBackground(new java.awt.Color(0, 51, 204));
-        btnDatosNuevos.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
-        btnDatosNuevos.setForeground(new java.awt.Color(255, 255, 255));
+        btnDatosNuevos.setBackground(new java.awt.Color(0, 166, 251));
+        btnDatosNuevos.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        btnDatosNuevos.setForeground(new java.awt.Color(0, 53, 84));
         btnDatosNuevos.setText("Ingresar Datos nuevos");
         btnDatosNuevos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(0, 0, 0)));
         btnDatosNuevos.setBorderPainted(false);
@@ -345,17 +333,18 @@ public void mostrarTipo(JPanel j) {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(btnOfertaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDatosNuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnOfertaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,9 +362,9 @@ public void mostrarTipo(JPanel j) {
         PnlGeneral3Layout.setVerticalGroup(
             PnlGeneral3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlGeneral3Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

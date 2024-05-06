@@ -23,7 +23,7 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
         initComponents();
         //ESTO ES SOLO UNA PRUEBA PARA QUE VEAS QUE FUNCIONA EL VALOR ESTATICO
         //ARRANCA EL PROGRAMA EN LA PANTALLA MENU PRINCIPAL
-        lblPrueba.setText(CCst.getTipo_Seguro());
+        
     }
 
     public void mostrarTipo(JPanel j) {
@@ -61,7 +61,7 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
 
         PnlGeneral2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(153, 221, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(852, 558));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -85,9 +85,10 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel2.setBackground(new java.awt.Color(153, 102, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 67, 107));
 
-        lblPrueba.setFont(new java.awt.Font("Segoe UI Black", 2, 18)); // NOI18N
+        lblPrueba.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lblPrueba.setForeground(new java.awt.Color(255, 255, 255));
         lblPrueba.setText("CRONOGRAMA DE PAGOS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -107,11 +108,11 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(204, 153, 0));
+        jPanel3.setBackground(new java.awt.Color(5, 130, 202));
 
-        btnOfertaInicial.setBackground(new java.awt.Color(0, 51, 204));
-        btnOfertaInicial.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
-        btnOfertaInicial.setForeground(new java.awt.Color(255, 255, 255));
+        btnOfertaInicial.setBackground(new java.awt.Color(0, 166, 251));
+        btnOfertaInicial.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        btnOfertaInicial.setForeground(new java.awt.Color(0, 53, 84));
         btnOfertaInicial.setText("Ir a oferta inicial");
         btnOfertaInicial.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(0, 0, 0)));
         btnOfertaInicial.setBorderPainted(false);
@@ -124,9 +125,9 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
             }
         });
 
-        btnExportarExcel.setBackground(new java.awt.Color(0, 51, 204));
-        btnExportarExcel.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
-        btnExportarExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btnExportarExcel.setBackground(new java.awt.Color(0, 166, 251));
+        btnExportarExcel.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        btnExportarExcel.setForeground(new java.awt.Color(0, 53, 84));
         btnExportarExcel.setText("Exportar a EXCEL");
         btnExportarExcel.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(0, 0, 0)));
         btnExportarExcel.setBorderPainted(false);
@@ -140,9 +141,9 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
             }
         });
 
-        btnDatosNuevos.setBackground(new java.awt.Color(0, 51, 204));
-        btnDatosNuevos.setFont(new java.awt.Font("Verdana", 3, 14)); // NOI18N
-        btnDatosNuevos.setForeground(new java.awt.Color(255, 255, 255));
+        btnDatosNuevos.setBackground(new java.awt.Color(0, 166, 251));
+        btnDatosNuevos.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
+        btnDatosNuevos.setForeground(new java.awt.Color(0, 53, 84));
         btnDatosNuevos.setText("Ingresar Datos nuevos");
         btnDatosNuevos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(0, 0, 0)));
         btnDatosNuevos.setBorderPainted(false);
@@ -160,21 +161,23 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnOfertaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnDatosNuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOfertaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDatosNuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnDatosNuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOfertaInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -193,10 +196,10 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout PnlGeneral2Layout = new javax.swing.GroupLayout(PnlGeneral2);
