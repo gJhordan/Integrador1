@@ -206,7 +206,7 @@
                               <Component id="jScrollPane1" min="-2" pref="392" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -222,12 +222,30 @@
                 <Component class="javax.swing.JTable" name="tblOfertaInicial">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                      <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="2" rowCount="4">
-                        <Column editable="true" title="DESCRIPCION" type="java.lang.Object"/>
-                        <Column editable="true" title="VALORES" type="java.lang.Object"/>
+                      <Table columnCount="2" rowCount="8">
+                        <Column editable="true" title="DESCRIPCION" type="java.lang.Object">
+                          <Data value="Tipo de Seguro"/>
+                          <Data value="Importe del prestamo"/>
+                          <Data value="Moneda"/>
+                          <Data value="Tiempo de cuotas"/>
+                          <Data value="Fecha de Desembolso"/>
+                          <Data value="Fecha de 1er Pago"/>
+                          <Data value="TEA TOTAL"/>
+                          <Data value="Cuota mensual"/>
+                        </Column>
+                        <Column editable="true" title="VALORES" type="java.lang.Object">
+                          <Data value="null"/>
+                          <Data value="null"/>
+                          <Data value="SOLES"/>
+                          <Data value=""/>
+                          <Data value="null"/>
+                          <Data value="null"/>
+                          <Data value="null"/>
+                          <Data value="null"/>
+                        </Column>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

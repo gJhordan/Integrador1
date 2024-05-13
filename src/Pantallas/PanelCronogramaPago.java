@@ -4,12 +4,13 @@
  */
 package Pantallas;
 
-
 import Clases.ClaseCalculo;
 import Clases.ClaseEstatica;
 import java.awt.BorderLayout;
+import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
-
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,13 +18,33 @@ import javax.swing.JPanel;
  */
 public class PanelCronogramaPago extends javax.swing.JPanel {
 
-
     ClaseCalculo CCst = ClaseEstatica.CC;
+    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    DecimalFormat df = new DecimalFormat("#.##");
+
     public PanelCronogramaPago() {
         initComponents();
-        //ESTO ES SOLO UNA PRUEBA PARA QUE VEAS QUE FUNCIONA EL VALOR ESTATICO
-        //ARRANCA EL PROGRAMA EN LA PANTALLA MENU PRINCIPAL
-        
+        LlenarTabla();
+    }
+
+    public void LlenarTabla() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        for (int i = 0; i < CCst.getFechasDePago().length; i++) {
+            model.addRow(new Object[]{
+                i + 1, // Número de cuota
+                CCst.getFechasDePago()[i].format(formatoFecha), // Fecha de pago
+                df.format(CCst.getSaldoInicialMensual()[i]),
+                df.format(CCst.getAmortizacionMontosMensuales()[i]), // Amortización
+                df.format(CCst.getMontoInteresesMensuales()[i]), // Intereses
+                df.format(CCst.getFactorcronogramaMensuales()[i]),
+                CCst.getDiasNormalMensuales()[i],
+                CCst.getDiasacumuladosMensuales()[i],
+                df.format(CCst.getMontoCuotasMensuales()[i]),// Cuotas
+                df.format(CCst.getSaldoFinalMensuales()[i]) // Saldos
+            });
+        }
     }
 
     public void mostrarTipo(JPanel j) {
@@ -66,17 +87,17 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "MES", "VENCIMIENTO", "AMORTIZACION", "INTERES", "CUOTA", "SALDO"
+                "MES", "VENCIMIENTO", "SALDO INICIAL", "AMORTIZACION", "INTERES", "FCM", "DN", "DACUMULADOS", "CUOTASMENSUALES", "SALDO FINAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, true, false, false, true, true, true, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -172,7 +193,7 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExportarExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDatosNuevos, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +217,7 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -235,7 +256,8 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDatosNuevosActionPerformed
 
     private void btnOfertaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOfertaInicialActionPerformed
-
+        PanelOfertaInicial pOIni = new PanelOfertaInicial();
+        mostrarTipo(pOIni);
     }//GEN-LAST:event_btnOfertaInicialActionPerformed
 
 

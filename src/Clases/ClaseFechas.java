@@ -6,15 +6,31 @@ package Clases;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
-public class ClaseFechas extends ClaseRegistro {
+abstract class ClaseFechas extends ClaseRegistro {
 
     LocalDate fechadesembolso;
     LocalDate fecha1erpago;
     LocalDate[] fechasDePago;
+    private double[] diasNormalMensuales, diasacumuladosMensuales;
 
-    
+    public double[] getDiasNormalMensuales() {
+        return diasNormalMensuales;
+    }
+
+    public void setDiasNormalMensuales(double[] diasNormalMensuales) {
+        this.diasNormalMensuales = diasNormalMensuales;
+    }
+
+    public double[] getDiasacumuladosMensuales() {
+        return diasacumuladosMensuales;
+    }
+
+    public void setDiasacumuladosMensuales(double[] diasacumuladosMensuales) {
+        this.diasacumuladosMensuales = diasacumuladosMensuales;
+    }
+
     public LocalDate getFechadesembolso() {
         return fechadesembolso;
     }
@@ -45,18 +61,39 @@ public class ClaseFechas extends ClaseRegistro {
     }
 
     public void generarFechasDePago() {
+       fecha1erpago = generarFecha1erPago();
         fechasDePago = new LocalDate[Cuotas];
         for (int i = 0; i < Cuotas; i++) {
-           
-            fechasDePago[i] = fecha1erpago.plusMonths(i);
-             if (fechasDePago[i].getDayOfWeek() == DayOfWeek.SUNDAY) {
-                fechasDePago[i] = fechasDePago[i].plusDays(1); 
+            fechasDePago[i] = getFecha1erpago().plusMonths(i);
+
+            if (fechasDePago[i].getDayOfWeek() == DayOfWeek.SUNDAY) {
+                fechasDePago[i] = fechasDePago[i].plusDays(1);
             }
-            System.out.println(fechasDePago[i]);
+
+        }
+        generarDiasNyDiasA();
+    }
+
+    public void generarDiasNyDiasA() {
+        diasNormalMensuales = new double[Cuotas];
+        diasacumuladosMensuales = new double[Cuotas];
+        for (int i = 0; i < Cuotas; i++) {
+            if (i == 0) {
+                diasNormalMensuales[i] = getPeriodo_Gracia();
+            } else {
+                diasNormalMensuales[i] = (int) ChronoUnit.DAYS.between(fechasDePago[i - 1], fechasDePago[i]);
+            }
+
+            if (i > 0) {
+                diasacumuladosMensuales[i] = diasacumuladosMensuales[i - 1] + diasNormalMensuales[i];
+            } else {
+                diasacumuladosMensuales[i] = diasNormalMensuales[i];
+            }
         }
     }
-     public void CalcularFechaDesembolso() {
-        this.fechadesembolso = LocalDate.now();
+
+    public void CalcularFechaDesembolso() {
+       fechadesembolso = LocalDate.now();
     }
-  
+
 }

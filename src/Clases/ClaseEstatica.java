@@ -11,6 +11,5 @@ package Clases;
 public class ClaseEstatica {
     
     public static ClaseCalculo CC = new ClaseCalculo();
-    public static ClaseFechas CF = new ClaseFechas();
    
 }

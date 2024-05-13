@@ -5,42 +5,61 @@
 package Pantallas;
 
 import Clases.ClaseEstatica;
-import Clases.ClaseFechas;
 
 import Clases.ClaseCalculo;
 import java.awt.BorderLayout;
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Administrador
  */
 public class PanelOfertaInicial extends javax.swing.JPanel {
+
     ClaseCalculo CCst = ClaseEstatica.CC;
-    ClaseFechas CFst = ClaseEstatica.CF;
-      DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public PanelOfertaInicial() { 
+
+    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    DecimalFormat df = new DecimalFormat("#.##");
+
+    public PanelOfertaInicial() {
         initComponents();
         BloquearTxt();
         CCst.setTCEA(15.77);
-        CCst.setMontoCuota(490.64);
+
         txtTipoSeguro.setText(CCst.getTipo_Seguro());
-        txtCuotaMensual.setText( String.valueOf(CCst.getMontoCuota()));
-        txtCuotas.setText(String.valueOf(CFst.getCuotas()));
-        txtFecha1erPago.setText(String.valueOf(CFst.getFecha1erpago().format(formatoFecha)));
-        txtFechaDesembolso.setText(String.valueOf(CFst.getFechadesembolso().format(formatoFecha)));
-        txtImportePrestamo.setText(String.valueOf(CCst.getMontoTotal()));
-        txtMAFInicial.setText(String.valueOf(Math.round(CCst.getMAFInicial()* 100.0) / 100.0 ));
+        txtCuotaMensual.setText(String.valueOf(df.format(CCst.getMontoCuota())));
+        txtCuotas.setText(String.valueOf(CCst.getCuotas()));
+        txtFecha1erPago.setText(String.valueOf(CCst.getFecha1erpago().format(formatoFecha)));
+        txtFechaDesembolso.setText(String.valueOf(CCst.getFechadesembolso().format(formatoFecha)));
+        txtImportePrestamo.setText(String.valueOf(df.format(CCst.getMontoTotal())));
+        txtMAFInicial.setText(String.valueOf(df.format(CCst.getMAFInicial())));
         txtMoneda.setText("SOLES");
-        txtMontoSeguro.setText(String.valueOf(Math.round(CCst.getMontoSeguro() * 100.0) / 100.0 ));
-        txtPrimaSeguro.setText(String.valueOf(CCst.getPrimaSeguro()*100)+"%");
-        txtTCEA.setText(String.valueOf(CCst.getTCEA())+"%");
-        txtTEA.setText(String.valueOf(CCst.getTEA())+"%");
+        txtMontoSeguro.setText(String.valueOf(df.format(CCst.getMontoSeguroFinal())));
+        txtPrimaSeguro.setText(String.valueOf(df.format(CCst.getPrimaSeguroFinal() * 100)) + "%");
+        txtTCEA.setText(String.valueOf(CCst.getTCEA()) + "%");
+        txtTEA.setText(String.valueOf(CCst.getTEA() * 100) + "%");
         txtTipoSeguro.setText(CCst.getTipo_Seguro());
-        CFst.generarFechasDePago();
+        LlenarTabla();
     }
-public void mostrarTipo(JPanel j) {
+
+    public void LlenarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tblOfertaInicial.getModel();
+        model.setRowCount(0);
+
+        model.addRow(new Object[]{"Tipo de Seguro", CCst.getTipo_Seguro()});
+        model.addRow(new Object[]{"Importe del préstamo", txtImportePrestamo.getText()});
+        model.addRow(new Object[]{"Moneda", "SOLES"});
+        model.addRow(new Object[]{"Tiempo de cuotas", CCst.getCuotas()});
+        model.addRow(new Object[]{"Fecha de Desembolso", txtFechaDesembolso.getText()});
+        model.addRow(new Object[]{"Fecha del 1er Pago",txtFecha1erPago.getText()});
+        model.addRow(new Object[]{"TEA (tasa de interés)",txtTEA.getText()});
+        model.addRow(new Object[]{"Cuota mensual", txtCuotaMensual.getText()});
+    }
+
+    public void mostrarTipo(JPanel j) {
 
         j.setSize(852, 558);
         j.setLocation(0, 0);
@@ -50,21 +69,23 @@ public void mostrarTipo(JPanel j) {
         PnlGeneral3.revalidate();
         PnlGeneral3.repaint();
     }
-   public void BloquearTxt(){
-       txtCuotaMensual.setEnabled(false);
-       txtCuotas.setEnabled(false);
-       txtFecha1erPago.setEnabled(false);
-       txtFechaDesembolso.setEnabled(false);
-       txtImportePrestamo.setEnabled(false);
-       txtMAFInicial.setEnabled(false);
-       txtMoneda.setEnabled(false);
-       txtMontoSeguro.setEnabled(false);
-       txtPrimaSeguro.setEnabled(false);
-       txtTCEA.setEnabled(false);
-       txtTEA.setEnabled(false);
-       txtTipoSeguro.setEnabled(false);
-       
-   }
+
+    public void BloquearTxt() {
+        txtCuotaMensual.setEnabled(false);
+        txtCuotas.setEnabled(false);
+        txtFecha1erPago.setEnabled(false);
+        txtFechaDesembolso.setEnabled(false);
+        txtImportePrestamo.setEnabled(false);
+        txtMAFInicial.setEnabled(false);
+        txtMoneda.setEnabled(false);
+        txtMontoSeguro.setEnabled(false);
+        txtPrimaSeguro.setEnabled(false);
+        txtTCEA.setEnabled(false);
+        txtTEA.setEnabled(false);
+        txtTipoSeguro.setEnabled(false);
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -107,13 +128,17 @@ public void mostrarTipo(JPanel j) {
 
         jPanel1.setBackground(new java.awt.Color(153, 221, 255));
 
-        tblOfertaInicial.setForeground(new java.awt.Color(255, 255, 255));
+        tblOfertaInicial.setForeground(new java.awt.Color(0, 0, 0));
         tblOfertaInicial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {"Tipo de Seguro", null},
+                {"Importe del prestamo", null},
+                {"Moneda", "SOLES"},
+                {"Tiempo de cuotas", ""},
+                {"Fecha de Desembolso", null},
+                {"Fecha de 1er Pago", null},
+                {"TEA TOTAL", null},
+                {"Cuota mensual", null}
             },
             new String [] {
                 "DESCRIPCION", "VALORES"
@@ -277,7 +302,7 @@ public void mostrarTipo(JPanel j) {
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(5, 130, 202));
@@ -380,7 +405,8 @@ public void mostrarTipo(JPanel j) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOfertaInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOfertaInicialActionPerformed
-
+        PanelCronogramaPago pCPag = new PanelCronogramaPago();
+        mostrarTipo(pCPag);
     }//GEN-LAST:event_btnOfertaInicialActionPerformed
 
     private void btnExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarExcelActionPerformed

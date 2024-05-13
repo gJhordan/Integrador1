@@ -5,7 +5,6 @@
 package Pantallas;
 
 import Clases.ClaseCalculo;
-import Clases.ClaseFechas;
 import Clases.ClaseEstatica;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
@@ -18,7 +17,7 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
 
     ClaseCalculo CCst = ClaseEstatica.CC;
 
-    ClaseFechas CFst = ClaseEstatica.CF;
+
 
     public PanelIngresarDatos() {
         initComponents();
@@ -26,9 +25,9 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
     }
 
     public void GuardarDatos() {
-        CFst.setCuotas((int) spn_CantidadCuotas.getValue());
-        CFst.setPeriodo_Gracia((int) spn_PeriodoGracia.getValue());
-        CCst.setTEA(Integer.parseInt(txt_TEA.getText()));
+        CCst.setCuotas((int) spn_CantidadCuotas.getValue());
+        CCst.setPeriodo_Gracia((int) spn_PeriodoGracia.getValue());
+        CCst.setTEA(Double.parseDouble(txt_TEA.getText()) / 100);
         CCst.setMontoPP(Integer.parseInt(txtMonto_PP.getText()));
         CCst.setMontoTC(Integer.parseInt(txtMonto_TC.getText()));
         CCst.setMontoSolicitado(Integer.parseInt(txt_CashSolicitado.getText()));
@@ -39,11 +38,12 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
     public void CalcularDatos() {
         CCst.DefinirMontoPP();
         CCst.DefinirMontoTotal();
-        CCst.DefinirPrimaSeguro();
-        CCst.DefinirMontoSeguro();
+        CCst.generarFechasDePago();
+        CCst.DefinirPrimaSeguroFinal();
+        CCst.DefinirMontoSeguroFinal();
         CCst.DefinirMAFInicial();
-        CFst.setFecha1erpago(CFst.generarFecha1erPago());
-        CFst.generarFechasDePago();
+        CCst.DefinirVariablesCronogramaFinal();
+//        CCst.CalcularTCEA();
     }
 
     public void mostrarTipo(JPanel j) {
@@ -334,6 +334,7 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
 
     private void btn_CronogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CronogramaActionPerformed
         GuardarDatos();
+        CalcularDatos();
         PanelCronogramaPago pCPag = new PanelCronogramaPago();
         mostrarTipo(pCPag);
     }//GEN-LAST:event_btn_CronogramaActionPerformed
