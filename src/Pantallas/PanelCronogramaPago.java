@@ -7,10 +7,26 @@ package Pantallas;
 import Clases.ClaseCalculo;
 import Clases.ClaseEstatica;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  *
@@ -19,7 +35,7 @@ import javax.swing.table.DefaultTableModel;
 public class PanelCronogramaPago extends javax.swing.JPanel {
 
     ClaseCalculo CCst = ClaseEstatica.CC;
-    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     DecimalFormat df = new DecimalFormat("#.##");
 
     public PanelCronogramaPago() {
@@ -35,15 +51,103 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
             model.addRow(new Object[]{
                 i + 1, // Número de cuota
                 CCst.getFechasDePago()[i].format(formatoFecha), // Fecha de pago
-                df.format(CCst.getSaldoInicialMensual()[i]),
-                df.format(CCst.getAmortizacionMontosMensuales()[i]), // Amortización
-                df.format(CCst.getMontoInteresesMensuales()[i]), // Intereses
-                df.format(CCst.getFactorcronogramaMensuales()[i]),
                 CCst.getDiasNormalMensuales()[i],
                 CCst.getDiasacumuladosMensuales()[i],
-                df.format(CCst.getMontoCuotasMensuales()[i]),// Cuotas
-                df.format(CCst.getSaldoFinalMensuales()[i]) // Saldos
+                "S/." + df.format(CCst.getSaldoInicialMensual()[i]),
+                "S/." + df.format(CCst.getAmortizacionMontosMensuales()[i]), // Amortización
+                "S/." + df.format(CCst.getMontoInteresesMensuales()[i]), // Intereses
+                "S/." + df.format(CCst.getMontoCuotasMensuales()[i]),// Cuotas
+                "S/." + df.format(CCst.getSaldoFinalMensuales()[i]), // Saldos
+                df.format(CCst.getFactorcronogramaMensuales()[i])
+
             });
+        }
+    }
+
+    public void exportarExcel(JTable t) throws IOException {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
+        chooser.setFileFilter(filter);
+        chooser.setDialogTitle("Guardar archivo");
+        chooser.setAcceptAllFileFilterUsed(false);
+
+        if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            String ruta = chooser.getSelectedFile().toString().concat(".xls");
+            try {
+                File archivoXLS = new File(ruta);
+                if (archivoXLS.exists()) {
+                    archivoXLS.delete();
+                }
+                archivoXLS.createNewFile();
+
+                // Cargar la plantilla desde los recursos del paquete
+                InputStream inputStream = getClass().getResourceAsStream("/resources/PlantillaCronograma.xls");
+                Workbook libro = new HSSFWorkbook(inputStream);
+                Sheet hoja = libro.getSheetAt(0); // Suponemos que los datos se escriben en la primera hoja
+                inputStream.close();
+
+                int[] columnasAExportar = {0, 1, 5, 6, 7, 8};
+
+                // Escribir los datos del JTable en la hoja
+                int filaInicio = 6; // Comenzar en la fila 7 (índice 6)
+                for (int f = 0; f < t.getRowCount(); f++) {
+                    Row fila = hoja.getRow(filaInicio);
+                    if (fila == null) {
+                        fila = hoja.createRow(filaInicio);
+                    }
+                    int colExcel = 1; // Empezar en la columna B (índice 1)
+                    for (int c : columnasAExportar) {
+                        Cell celda = fila.getCell(colExcel);
+                        if (celda == null) {
+                            celda = fila.createCell(colExcel);
+                        }
+                        Object value = t.getValueAt(f, c);
+                        if (value instanceof Double) {
+                            celda.setCellValue((Double) value);
+                        } else if (value instanceof Float) {
+                            celda.setCellValue((Float) value);
+                        } else if (value instanceof Boolean) {
+                            celda.setCellValue((Boolean) value);
+                        } else {
+                            celda.setCellValue(value.toString());
+                        }
+                        colExcel++;
+                    }
+                    filaInicio++;
+                }
+
+                // Crear un estilo de celda con fondo blanco
+                CellStyle estiloBlanco = libro.createCellStyle();
+                estiloBlanco.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+                estiloBlanco.setFillPattern((short) FillPatternType.SOLID_FOREGROUND.ordinal());
+
+                // Hacer blancas las celdas por debajo de los datos exportados
+                int ultimaFilaUtilizada = filaInicio - 1;
+                int ultimaFilaHoja = hoja.getLastRowNum();
+                for (int i = ultimaFilaUtilizada + 1; i <= ultimaFilaHoja; i++) {
+                    Row row = hoja.getRow(i);
+                    if (row == null) {
+                        row = hoja.createRow(i);
+                    }
+                    for (int j = 0; j < row.getLastCellNum(); j++) {
+                        Cell cell = row.getCell(j);
+                        if (cell == null) {
+                            cell = row.createCell(j);
+                        }
+                        cell.setCellStyle(estiloBlanco);
+                    }
+                }
+
+                // Guardar el archivo modificado
+                FileOutputStream archivo = new FileOutputStream(archivoXLS);
+                libro.write(archivo);
+                archivo.close();
+
+                // Abrir el archivo guardado
+                Desktop.getDesktop().open(archivoXLS);
+            } catch (IOException | NumberFormatException e) {
+                throw e;
+            }
         }
     }
 
@@ -93,11 +197,11 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "MES", "VENCIMIENTO", "SALDO INICIAL", "AMORTIZACION", "INTERES", "FCM", "DN", "DACUMULADOS", "CUOTASMENSUALES", "SALDO FINAL"
+                "MES", "VENCIMIENTO", "DN", "DACUMULADOS", "SALDO INICIAL", "AMORTIZACION", "INTERES", "CUOTASMENSUALES", "SALDO FINAL", "FCM"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, false, true, true, true, true, false
+                false, false, false, false, false, false, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -217,7 +321,7 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
@@ -247,7 +351,11 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExportarExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportarExcelActionPerformed
-
+        try {
+            exportarExcel(jTable1);
+        } catch (IOException ex) {
+            System.out.println("Error: " + ex);
+        }
     }//GEN-LAST:event_btnExportarExcelActionPerformed
 
     private void btnDatosNuevosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosNuevosActionPerformed
