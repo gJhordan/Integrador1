@@ -13,7 +13,7 @@ abstract class ClaseFechas extends ClaseRegistro {
     LocalDate fechadesembolso;
     LocalDate fecha1erpago;
     LocalDate[] fechasDePago;
-    private double[] diasNormalMensuales, diasacumuladosMensuales;
+    double[] diasNormalMensuales, diasacumuladosMensuales;
 
     public double[] getDiasNormalMensuales() {
         return diasNormalMensuales;

@@ -12,7 +12,7 @@ abstract class ClaseRegistro {
     double TEA, MontoTC, MontoPP,MontoSolicitado, MontoTotal;
     String Tipo_Seguro;
     int Periodo_Gracia, Cuotas;
-
+    
     public double getTEA() {
         return TEA;
     }
@@ -79,8 +79,7 @@ abstract class ClaseRegistro {
     public void DefinirMontoPP(){
         this.MontoPP = getMontoPP()+(getMontoPP()*0.02);
     }
-     public void DefinirMontoTotal(){
-        
+     public void DefinirMontoTotal(){   
         this.MontoTotal = getMontoPP()+getMontoSolicitado()+getMontoTC();
     }
     

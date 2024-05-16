@@ -14,8 +14,10 @@ import java.time.temporal.ChronoUnit;
  */
 public class ClaseCalculo extends ClaseFechas {
 
-    private double MontoCuota, MontoSeguroFinal, PrimaSeguro, MAFInicial, TCEA, TEATotal, PrimaSeguroFinal;
-    private double[] montoseguroMensual, saldoInicialMensual, MontoCuotasMensuales, AmortizacionMontosMensuales, MontoInteresesMensuales, SaldoFinalMensuales, factorcronogramaMensuales;
+    private double MontoCuota, MontoSeguroFinal, PrimaSeguro, MAFInicial;
+    private double TCEA, TEATotal, PrimaSeguroFinal;
+    private double[] montoseguroMensual, saldoInicialMensual, MontoCuotasMensuales, AmortizacionMontosMensuales;
+    private double[]  MontoInteresesMensuales, SaldoFinalMensuales, factorcronogramaMensuales;
 
     public double[] getFactorcronogramaMensuales() {
         return factorcronogramaMensuales;
@@ -44,7 +46,6 @@ public class ClaseCalculo extends ClaseFechas {
     public double getMontoCuota() {
         return MontoCuota;
     }
-
 
     public double[] getMontoCuotasMensuales() {
         return MontoCuotasMensuales;
@@ -106,7 +107,6 @@ public class ClaseCalculo extends ClaseFechas {
         this.MAFInicial = MAFInicial;
     }
 
-
     public void DefinirPrimaSeguro() {
         double prima;
         switch (getTipo_Seguro()) {
@@ -129,12 +129,13 @@ public class ClaseCalculo extends ClaseFechas {
         double TEAFinal = Math.pow((1 + factor2), 12) - 1;
         TEATotal = TEAFinal;
     }
-public void CalcularTCEA() {
-    double iefectiva = Math.pow(1 + (TEA / Cuotas), Cuotas) - 1;
-    System.out.println(iefectiva);
-    TCEA = Math.pow(1 + iefectiva, Cuotas) - 1;
-    System.out.println("TCEA: " + TCEA);
-}
+
+    public void CalcularTCEA() {
+        double iefectiva = Math.pow(1 + (TEA / Cuotas), Cuotas) - 1;
+        System.out.println(iefectiva);
+        TCEA = Math.pow(1 + iefectiva, Cuotas) - 1;
+        System.out.println("TCEA: " + TCEA);
+    }
 //    public void CalcularTCEA() {
 //        double sumamac, epsilon = 0.0001;
 //        double[] montoacomparar;
@@ -154,6 +155,7 @@ public void CalcularTCEA() {
 //        } while (Math.abs(sumamac - MAFInicial) > epsilon);
 //
 //    }
+
     public void DefinirVariablesCronogramaFinal() {
         generarFechasDePago();
         DefinirCuotaMensual(DefinirFactoresCronograma(TEA), MAFInicial);
