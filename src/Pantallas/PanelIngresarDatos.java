@@ -161,7 +161,7 @@ public class PanelIngresarDatos extends javax.swing.JPanel {
         spn_CantidadCuotas.setValue(CCst.getCuotas());
         spn_PeriodoGracia.setValue(CCst.getPeriodo_Gracia());
         txt_TEA.setText(df.format(CCst.getTEA() * 100));
-        txtMonto_PP.setText(df.format(CCst.getMontoPP()));
+        txtMonto_PP.setText(df.format(CCst.getMontoPP()-(CCst.getMontoPP()*0.02)));
         txtMonto_TC.setText(df.format(CCst.getMontoTC()));
         txt_CashSolicitado.setText(df.format(CCst.getMontoSolicitado()));
         cmbbox_TipoSeguro.setSelectedItem(CCst.getTipo_Seguro());
