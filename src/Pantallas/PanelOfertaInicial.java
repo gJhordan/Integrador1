@@ -482,6 +482,7 @@ public class PanelOfertaInicial extends javax.swing.JPanel {
 
     private void btnDatosNuevosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosNuevosActionPerformed
         PanelIngresarDatos pIDat = new PanelIngresarDatos();
+        pIDat.VolverDatos();
         mostrarTipo(pIDat);
     }//GEN-LAST:event_btnDatosNuevosActionPerformed
 
