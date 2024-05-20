@@ -43,7 +43,7 @@ public class PanelOfertaInicial extends javax.swing.JPanel {
     public PanelOfertaInicial() {
         initComponents();
         BloquearTxt();
-        CCst.setTCEA(15.77);
+        
 
         txtTipoSeguro.setText(CCst.getTipo_Seguro());
         txtCuotaMensual.setText(String.valueOf("S/." + (df.format(CCst.getMontoCuota()))));
@@ -55,7 +55,7 @@ public class PanelOfertaInicial extends javax.swing.JPanel {
         txtMoneda.setText("SOLES");
         txtMontoSeguro.setText(String.valueOf("S/." + (df.format(CCst.getMontoSeguroFinal()))));
         txtPrimaSeguro.setText(String.valueOf(df.format(CCst.getPrimaSeguroFinal() * 100)) + "%");
-        txtTCEA.setText(String.valueOf(CCst.getTCEA()) + "%");
+        txtTCEA.setText(String.valueOf(df.format(CCst.getTCEA()* 100)) + "%");
         txtTEA.setText(String.valueOf(CCst.getTEA() * 100) + "%");
         txtTipoSeguro.setText(CCst.getTipo_Seguro());
         LlenarTabla();

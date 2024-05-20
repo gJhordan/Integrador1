@@ -131,30 +131,9 @@ public class ClaseCalculo extends ClaseFechas {
     }
 
     public void CalcularTCEA() {
-        double iefectiva = Math.pow(1 + (TEA / Cuotas), Cuotas) - 1;
-        System.out.println(iefectiva);
-        TCEA = Math.pow(1 + iefectiva, Cuotas) - 1;
-        System.out.println("TCEA: " + TCEA);
+       TCEA = TEA+PrimaSeguroFinal;
     }
-//    public void CalcularTCEA() {
-//        double sumamac, epsilon = 0.0001;
-//        double[] montoacomparar;
-//        double tcea = getTEA();
-//        montoacomparar = new double[Cuotas];
-//        do {
-//
-//            sumamac = 0;
-//
-//            for (int i = 0; i < MontoCuotasMensuales.length; i++) {
-//                factorcronogramaMensuales[i] = 1 / Math.pow((1 + getTEA()), (diasacumuladosMensuales[i] / 360));
-//                montoacomparar[i] = Math.round(MontoCuotasMensuales[i] / factorcronogramaMensuales[i]);
-//                sumamac = sumamac + montoacomparar[i];
-//
-//            }
-//
-//        } while (Math.abs(sumamac - MAFInicial) > epsilon);
-//
-//    }
+
 
     public void DefinirVariablesCronogramaFinal() {
         generarFechasDePago();
