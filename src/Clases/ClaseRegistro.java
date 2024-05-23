@@ -9,9 +9,17 @@ package Clases;
  * @author Administrador
  */
 abstract class ClaseRegistro {
-    double TEA, MontoTC, MontoPP,MontoSolicitado, MontoTotal;
+    double TEA, MontoTC, MontoPP,MontoPPFinal,MontoSolicitado, MontoTotal;
     String Tipo_Seguro;
     int Periodo_Gracia, Cuotas;
+
+    public double getMontoPPFinal() {
+        return MontoPPFinal;
+    }
+
+    public void setMontoPPFinal(double MontoPPFinal) {
+        this.MontoPPFinal = MontoPPFinal;
+    }
     
     public double getTEA() {
         return TEA;
@@ -77,10 +85,10 @@ abstract class ClaseRegistro {
         this.Cuotas = Cuotas;
     }
     public void DefinirMontoPP(){
-        this.MontoPP = getMontoPP()+(getMontoPP()*0.02);
+        this.MontoPPFinal = getMontoPP()+(getMontoPP()*0.02);
     }
      public void DefinirMontoTotal(){   
-        this.MontoTotal = getMontoPP()+getMontoSolicitado()+getMontoTC();
+        this.MontoTotal = getMontoPPFinal()+getMontoSolicitado()+getMontoTC();
     }
     
     
