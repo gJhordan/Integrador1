@@ -269,7 +269,7 @@ public class PanelCronogramaPago extends javax.swing.JPanel {
         btnDatosNuevos.setBackground(new java.awt.Color(0, 166, 251));
         btnDatosNuevos.setFont(new java.awt.Font("Verdana", 1, 15)); // NOI18N
         btnDatosNuevos.setForeground(new java.awt.Color(0, 53, 84));
-        btnDatosNuevos.setText("Ingresar nueva oferta");
+        btnDatosNuevos.setText("Nueva Oferta");
         btnDatosNuevos.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 15, 0, 0, new java.awt.Color(0, 0, 0)));
         btnDatosNuevos.setBorderPainted(false);
         btnDatosNuevos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
